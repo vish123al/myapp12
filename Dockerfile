@@ -14,6 +14,7 @@ RUN apt-get install -y python python-pip
 
 # build app
 #!/usr/bin/python
+RUN cd stockprediction
 RUN pip install django
 RUN python stockprediction/manage.py makemigrations
 RUN python stockprediction/manage.py migrate
