@@ -13,10 +13,11 @@ RUN apt-get install -y python python-pip
 #WORKDIR /src
 
 # build app
+#!/usr/bin/python
 RUN pip install django
-RUN python stockprediction/manage.py makemigrations --noinput
-RUN python stockprediction/manage.py migrate --noinput
-RUN python stockprediction/manage.py test --noinput
+RUN python stockprediction/manage.py makemigrations
+RUN python stockprediction/manage.py migrate
+RUN python stockprediction/manage.py test
 
 # expose port 8000 for us to use
 EXPOSE 8000
