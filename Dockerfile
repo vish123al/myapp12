@@ -13,7 +13,7 @@ RUN apt-get install -y python python-pip
 #WORKDIR /src
 
 # build app
-RUN pip install -r requirements.txt
+RUN pip install django
 RUN python manage.py makemigrations --noinput
 RUN python manage.py migrate --noinput
 RUN python manage.py test --noinput
