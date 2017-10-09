@@ -1,12 +1,31 @@
 # start with a base image
 FROM ubuntu:14.04
 MAINTAINER Real Python <info@realpython.com>
-ENV MYSQL_USER=root \
-    MYSQL_PASSWORD=root \
-    MYSQL_HOST=3.3.0.6 \
-    MYSQL_DATA_DIR=/var/lib/mysql \
-    MYSQL_RUN_DIR=/run/mysqld \
-    MYSQL_LOG_DIR=/var/log/mysql
+RUN \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server && \
+  rm -rf /var/lib/apt/lists/* && \
+  sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf && \
+  sed -i 's/^\(log_error\s.*\)/# \1/' /etc/mysql/my.cnf && \
+  echo "mysqld_safe &" > /tmp/config && \
+  echo "mysqladmin --silent --wait=30 ping || exit 1" >> /tmp/config && \
+  echo "mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'" >> /tmp/config && \
+  bash /tmp/config && \
+  rm -f /tmp/config
+
+# Define mountable directories.
+VOLUME ["/etc/mysql", "/var/lib/mysql"]
+
+# Define working directory.
+WORKDIR /data
+
+# Define default command.
+CMD ["mysqld_safe"]
+
+# Expose ports.
+EXPOSE 3306
+
+
 # install dependencies
 RUN apt-get -qq update
 RUN apt-get install -y python python-pip
@@ -22,7 +41,7 @@ WORKDIR /stockprediction
 #!/usr/bin/python
 RUN apt-get install -y python-dev 
 RUN apt-get install -y libmysqlclient-dev
-RUN pip install MySQL-python
+#`RUN pip install MySQL-python
 RUN pip install django
 RUN python manage.py makemigrations
 RUN python manage.py migrate
