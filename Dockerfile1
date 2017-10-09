@@ -1,0 +1,37 @@
+# Set the base image to Ubuntu
+FROM ubuntu
+
+# File Author / Maintainer
+MAINTAINER surya.janardhan@gmail.com
+
+# Update the sources list
+RUN apt-get update
+
+# Install basic applications
+RUN apt-get install -y git build-essential libapache2-mod-wsgi apache2
+
+# Install Python and Basic Python Tools
+RUN apt-get install -y python python-pip
+
+# Get pip to download and install requirements:
+RUN pip install django
+
+#install MySQL in noninteractive way
+RUN export DEBIAN_FRONTEND=noninteractive
+RUN apt-get -q -y install mysql-server python-mysqldb
+
+#create the working dir and set the working directory
+CMD mkdir /usr/local/share/apps
+WORKDIR /usr/local/share/apps
+
+#clone the tutorials from the github.com
+RUN git clone https://github.com/Jadatravu/Tutorials /usr/local/share/apps/tutorials
+
+# set the permissions to the app directory
+CMD cd /usr/local/share/apps && chown -R www-data:www-data tutorials
+WORKDIR  /usr/local/share/apps/tutorials/django_tutorials/helloworld/
+
+# set the database for the helloworld database django_tut
+RUN echo "CREATE DATABASE django_tut;" > /usr/local/share/apps/create_database.txt && service mysql start  && mysql -u root < /usr/local/share/apps/create_database.txt &&  python manage.py migrate
+
+EXPOSE 80
