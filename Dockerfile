@@ -10,15 +10,15 @@ RUN apt-get install -y python python-pip
 #ADD ./src /src/
 
 # specify working directory
-#WORKDIR /src
+WORKDIR /src
 
 # build app
 #!/usr/bin/python
 RUN cd stockprediction
 RUN pip install django
-RUN python stockprediction/manage.py makemigrations
-RUN python stockprediction/manage.py migrate
-RUN python stockprediction/manage.py test
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+RUN python manage.py test
 
 # expose port 8000 for us to use
 EXPOSE 8000
