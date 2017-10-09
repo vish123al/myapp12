@@ -22,6 +22,7 @@ RUN apt-get install -y libmysqlclient-dev
 RUN pip install MySQL-python
 ADD my.cnf /etc/mysql/my.cnf
 RUN pip install django
+pip install numpy
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 RUN python manage.py test
