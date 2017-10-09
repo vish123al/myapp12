@@ -5,7 +5,7 @@ MAINTAINER Real Python <info@realpython.com>
 
 
 # install dependencies
-RUN apt-get -qq update
+#RUN apt-get -qq update
 RUN apt-get install -y python python-pip
 RUN python test.py
 
@@ -17,8 +17,8 @@ WORKDIR /stockprediction
 
 # build app
 #!/usr/bin/python
-RUN apt-get install -y python-dev 
-RUN apt-get install -y libmysqlclient-dev
+#RUN apt-get install -y python-dev 
+#RUN apt-get install -y libmysqlclient-dev
 #`RUN pip install MySQL-python
 RUN pip install django
 RUN python manage.py makemigrations
