@@ -19,6 +19,7 @@ WORKDIR /stockprediction
 #!/usr/bin/python
 RUN apt-get install -y python-dev 
 RUN apt-get install -y libmysqlclient-dev
+RUN apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran
 RUN pip install -r requirements.txt
 #RUN pip install MySQL-python
 ADD my.cnf /etc/mysql/my.cnf
