@@ -7,10 +7,10 @@ RUN apt-get -qq update
 RUN apt-get install -y python python-pip
 
 # grab contents of source directory
-#ADD ./src /src/
+ADD ./stockprediction /stockprediction/
 
 # specify working directory
-WORKDIR /src
+WORKDIR /stockprediction
 
 # build app
 #!/usr/bin/python
