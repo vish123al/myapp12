@@ -3,7 +3,7 @@
 import pymysql
 
 # Open database connection
-db = pymysql.connect("3.3.0.6","root","root" )
+db = pymysql.connect("3.3.0.6","root","root","myapp",3306)
 
 cur = db.cursor()
 
