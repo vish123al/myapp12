@@ -26,9 +26,7 @@ RUN pip install django
 
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt-get -q -y install mysql-server python-mysqldb
-RUN echo "CREATE DATABASE stock;" > /stockprediction/create_database.txt && 
-service mysql start  && mysql -u root < /stockprediction/create_database.txt &&  
-python manage.py migrate
+RUN echo "CREATE DATABASE stock;" > /stockprediction/create_database.txt && service mysql start  && mysql -u root < /stockprediction/create_database.txt && python manage.py migrate
 
 
 
