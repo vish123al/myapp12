@@ -1,7 +1,12 @@
 # start with a base image
 FROM ubuntu:14.04
 MAINTAINER Real Python <info@realpython.com>
-
+ENV MYSQL_USER=root \
+    MYSQL_PASSWORD=root \
+    MYSQL_HOST=3.3.0.6 \
+    MYSQL_DATA_DIR=/var/lib/mysql \
+    MYSQL_RUN_DIR=/run/mysqld \
+    MYSQL_LOG_DIR=/var/log/mysql
 # install dependencies
 RUN apt-get -qq update
 RUN apt-get install -y python python-pip
