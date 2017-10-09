@@ -15,6 +15,7 @@ WORKDIR /stockprediction
 
 # build app
 #!/usr/bin/python
+RUN apt-get install python-dev 
 RUN apt-get install -y libmysqlclient-dev
 RUN pip install MySQL-python
 RUN pip install django
