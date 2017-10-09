@@ -14,7 +14,7 @@ WORKDIR /src
 
 # build app
 #!/usr/bin/python
-RUN cd stockprediction
+
 RUN pip install django
 RUN python manage.py makemigrations
 RUN python manage.py migrate
