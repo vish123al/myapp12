@@ -7,10 +7,10 @@ RUN apt-get -qq update
 RUN apt-get install -y python python-pip
 
 # grab contents of source directory
-ADD ./src /src/
+#ADD ./src /src/
 
 # specify working directory
-WORKDIR /src
+#WORKDIR /src
 
 # build app
 RUN pip install -r requirements.txt
