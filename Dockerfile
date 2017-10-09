@@ -29,7 +29,7 @@ ADD my.cnf /etc/mysql/my.cnf
 #pip install yahoo_finance
 RUN python manage.py makemigrations
 RUN python manage.py migrate
-RUN python manage.py test
+#RUN python manage.py test
 
 # expose port 8000 for us to use
 EXPOSE 8000
