@@ -1,0 +1,4 @@
+Django==1.9.5
+MYSQL-python
+numpy
+yahoo_finance
