@@ -5,7 +5,7 @@ MAINTAINER Real Python <info@realpython.com>
 
 
 # install dependencies
-#RUN apt-get -qq update
+RUN apt-get -qq update
 RUN apt-get install -y python python-pip
 RUN python test.py
 
