@@ -242,7 +242,7 @@
                         <a class="page-scroll" href="/compare/">Compare</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/register/">Register</a>
+                        <a class="page-scroll" href="{% url 'register' %}">Register</a>
                     </li>
                     
                     {% if user.is_authenticated %}
