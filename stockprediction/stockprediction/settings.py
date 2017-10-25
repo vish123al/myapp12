@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'stockprediction.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysql',
+        'NAME': 'stocks',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '10.0.1.82',   # Or an IP Address that your DB is hosted on
